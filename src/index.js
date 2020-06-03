@@ -1,6 +1,6 @@
-import Form from "./js/components/Form";
+import EventCreator from "./components/eventCreator";
 import React from "react";
 import ReactDOM from "react-dom";
 
 const wrapper = document.getElementById("root");
-wrapper ? ReactDOM.render(<Form />, wrapper) : false;
+wrapper ? ReactDOM.render(<EventCreator />, wrapper) : false;
