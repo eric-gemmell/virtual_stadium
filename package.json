@@ -1,0 +1,32 @@
+{
+  "name": "virtual_stadium",
+  "version": "1.0.0",
+  "description": "a react based webapp allowing people to interact in a stadium like fashion",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palamalama/virtual_stadium.git"
+  },
+  "author": "Eric Gemmell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palamalama/virtual_stadium/issues"
+  },
+  "homepage": "https://github.com/palamalama/virtual_stadium#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
