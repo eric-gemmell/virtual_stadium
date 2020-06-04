@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+import largeStadium from "./madridStadium.png";
 
 class EventCreator extends Component {
 	constructor() {
@@ -10,15 +11,10 @@ class EventCreator extends Component {
 			mobile: true,
 			carouselIndex: 0,
 			slides: [
-				(<div>1</div>),
-				(<div>2</div>),
-				(<div>3</div>),
+				(<img src={largeStadium} alt={"Large Stadium"}/>),
+				(<img src={largeStadium} alt={"Large Stadium"}/>),
+				(<img src={largeStadium} alt={"Large Stadium"}/>),
 			],
-			thumbnails: [
-				(<div>1</div>),
-				(<div>2</div>),
-				(<div>3</div>),
-			]
 
 		}
 		this.carouselChange = this.carouselChange.bind(this);
@@ -30,12 +26,11 @@ class EventCreator extends Component {
 	render() {
 		return (
 			<div className={"EventCreator"}>
-				<Carousel centered infinite slidesPerPage={2}
+				<Carousel centered infinite slidesPerPage={2} dots
 					value={this.state.value}
 					slides={this.state.slides}
 					onChange={this.carouselChange}
 				/>
-				<Dots number={this.state.thumbnails.length} thumbnails={this.state.thumbnails} value={this.state.value} onChange={this.carouselChange} number={this.state.slides.length} />
 			</div>
 		);
 	}
