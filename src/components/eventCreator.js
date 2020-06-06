@@ -31,8 +31,11 @@ class EventCreator extends Component {
 			<div className={"EventCreator"}>
 				<div style={headerStyles}>
 					<img src={logo} style={logoStyles}/>		
-					<div style={headerTextStyles}> Pick Your Stadium </div>
+					<div style={headerTextStyles}>Event Creator</div>
 				</div>
+				<div style={secondaryHeaderStyles}>
+					-Pick your stadium
+				</div> 
 				<div style={carouselStyles}>
 					<CarouselMain carouselChange={this.carouselChange}/>
 				</div>
@@ -64,7 +67,7 @@ class EventCreator extends Component {
 
 export default EventCreator;
 let headerStyles = {
-	backgroundColor:"#20232a",
+	backgroundColor:"#333",
 	paddingBottom: "2%",
 	paddingTop: "2.5%",
 	overflow:"hidden"
@@ -81,6 +84,14 @@ let headerTextStyles = {
 	float:"left",
 	width:"85%"
 };
+let secondaryHeaderStyles = {
+	fontFamily: '"Lucida Console", Monaco, monospace',
+	fontSize: "1.2em",
+	color:"white",
+	backgroundColor:"#333",
+	paddingLeft: "3%",
+	borderTop: "3px solid white"
+};
 let carouselStyles = {
 	paddingTop: "3%",
 
@@ -88,5 +99,6 @@ let carouselStyles = {
 let logoStyles = {
 	width:"10%", 
 	padding:"1%",
-	float:"left", 
+	float:"left"
 }
+
