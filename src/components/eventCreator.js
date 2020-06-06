@@ -31,7 +31,9 @@ class EventCreator extends Component {
 				<div style={headerStyles}>
 					<div> Pick Your Stadium </div>
 				</div>
-				<CarouselMain carouselChange={this.carouselChange}/>
+				<div style={carouselStyles}>
+					<CarouselMain carouselChange={this.carouselChange}/>
+				</div>
 				<div style={{}}>
 					<div> Select the start date and time of your event </div>
 					<DatePicker
@@ -71,4 +73,8 @@ let headerStyles = {
 	backgroundColor:"#20232a",
 	paddingBottom: "2%",
 	paddingTop: "2.5%"
+};
+let carouselStyles = {
+	paddingTop: "3%",
+
 };
