@@ -96,15 +96,25 @@ let headerStyles = {
 	paddingTop: "2.5%",
 	overflow:"hidden"
 };
+let logoStyles = {
+	display: "block",
+	maxWidth:"20%",
+	maxHeight:"50px",
+	verticalAlign: "middle",
+	paddingLeft:"5%",
+	float: "left",
+	
+}
 let headerTextStyles = {
 	fontFamily: "Poppins, sans-serif",
 	textAlign: "center",
-	fontSize: "1.8em",
+	fontSize: "2em",
 	fontWeight: "600",
 	color: "white",
 	textShadow: "0 1px 2px rgba(255,255,255,.3)",
 	float:"left",
-	width:"85%"
+	height: "50%",
+	width:"75%",
 };
 let secondaryHeaderStyles = {
 	fontFamily: "Poppins, sans-serif",
@@ -124,11 +134,6 @@ let dateStyles = {
 	paddingLeft:"3%",
 	paddingRight:"3%"
 };
-let logoStyles = {
-	width:"10%", 
-	padding:"1%",
-	float:"left"
-}
 function addDays(date, days) {
 	var result = new Date(date);
 	result.setDate(result.getDate() + days);
