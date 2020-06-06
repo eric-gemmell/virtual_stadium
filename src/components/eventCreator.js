@@ -44,7 +44,7 @@ class EventCreator extends Component {
 					<img src={logo} style={logoStyles}/>		
 					<div style={headerTextStyles}>Event Creator</div>
 				</div>
-				<div style={Object.assign({paddingTop: "2%"}, secondaryHeaderStyles)}>
+				<div style={secondaryHeaderStyles}>
 					Pick your stadium
 				</div> 
 				<div style={carouselStyles}>
@@ -54,25 +54,33 @@ class EventCreator extends Component {
 				<div style={secondaryHeaderStyles}>
 					 Start Date and Time
 				</div>
-				<div style={{}}>
+				<div style={dateStyles}>
 					<DatePicker
 						selected={this.state.startDate}
 						onChange={date => this.setStartDate(date)}
-						todayButton="Today"
 						minDate={this.state.today}
-						dateFormat="MMMM d, yyyy"
+						maxDate={addDays(this.state.today,30)}
+						showTimeSelect
+						timeFormat="HH:mm"
+						timeIntervals={15}
+						timeCaption="time"
+						dateFormat="MMMM d, yyyy h:mm aa"
 					/>
 				</div>
 				<div style={secondaryHeaderStyles}> 
 					End Date and Time 
 				</div>
-				<div style={{}}>
+				<div style={dateStyles}>
 					<DatePicker
 						selected={this.state.endDate}
 						onChange={date => this.setEndDate(date)}
 						minDate={this.state.today}
-						todayButton="Today"
-						dateFormat="MMMM d, yyyy"
+						maxDate={addDays(this.state.today,30)}
+						showTimeSelect
+						timeFormat="HH:mm"
+						timeIntervals={15}
+						timeCaption="time"
+						dateFormat="MMMM d, yyyy h:mm aa"
 					/>
 				</div>
 				
@@ -90,10 +98,8 @@ let headerStyles = {
 };
 let headerTextStyles = {
 	fontFamily: "Poppins, sans-serif",
-	fontSmoothing: "antialiased",
 	textAlign: "center",
 	fontSize: "1.8em",
-	textTransform: "uppercase",
 	fontWeight: "600",
 	color: "white",
 	textShadow: "0 1px 2px rgba(255,255,255,.3)",
@@ -106,14 +112,25 @@ let secondaryHeaderStyles = {
 	color:"#666666",
 	lineHeight: "1.5",
 	paddingLeft: "calc(3% + 5px)",
+	paddingTop:"2%",
+	paddingBottom:"2%",
 	fontWeight:"400",
 };
 let carouselStyles = {
 
+};
+let dateStyles = {
+	paddingTop:"5px",
+	paddingLeft:"3%",
+	paddingRight:"3%"
 };
 let logoStyles = {
 	width:"10%", 
 	padding:"1%",
 	float:"left"
 }
-
+function addDays(date, days) {
+	var result = new Date(date);
+	result.setDate(result.getDate() + days);
+	return result;
+}
