@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CarouselMain from "./carousel/carouselMain";
 import DatePicker from "react-datepicker";
+import ResponsiveTextInput from "./textInput/responsiveTextInput";
 import "react-datepicker/dist/react-datepicker.css";
 import logo from "./images/logo.png";
 
@@ -11,11 +12,15 @@ class EventCreator extends Component {
 			carouselIndex: 0,
 			today: new Date(),
 			startDate: new Date(),
-			endDate: new Date()
+			endDate: new Date(),
+			eventName: null,
+			eventNameStatus: "not ready"
 		}
 		this.carouselChange = this.carouselChange.bind(this);
 		this.setStartDate = this.setStartDate.bind(this);
 		this.setEndDate = this.setEndDate.bind(this);
+		this.setEventName = this.setEventName.bind(this);
+		this.setEVentNameStatus = this.setEventNameStatus.bind(this);
 	}
 	carouselChange(carouselIndex){
 		this.setState({carouselIndex});
@@ -25,6 +30,12 @@ class EventCreator extends Component {
 	}
 	setEndDate(date){
 		this.setState({endDate: date});
+	}
+	setEventName(name){
+		this.setState({eventName:name});
+	}
+	setEventNameStatus(newStatus){
+		this.setState({eventNameStatus:newStatus});
 	}
 	render() {
 		return (
@@ -39,8 +50,14 @@ class EventCreator extends Component {
 				<div style={carouselStyles}>
 					<CarouselMain carouselChange={this.carouselChange}/>
 				</div>
+				<div style={secondaryHeaderStyles}>
+					 -Pick a name for the event
+				</div>
+				<ResponsiveTextInput placeHolder={"Event Name"} nameChange={this.setEventName} statusChange={this.setEventNameStatus} />
+				<div style={secondaryHeaderStyles}>
+					 -Select start date and time
+				</div>
 				<div style={{}}>
-					<div> Select the start date and time of your event </div>
 					<DatePicker
 						selected={this.state.startDate}
 						onChange={date => this.setStartDate(date)}
@@ -49,8 +66,10 @@ class EventCreator extends Component {
 						dateFormat="MMMM d, yyyy"
 					/>
 				</div>
+				<div style={secondaryHeaderStyles}> 
+					-Select end date and time 
+				</div>
 				<div style={{}}>
-					<div> Select the end date and time of your event </div>
 					<DatePicker
 						selected={this.state.endDate}
 						onChange={date => this.setEndDate(date)}
@@ -87,10 +106,11 @@ let headerTextStyles = {
 let secondaryHeaderStyles = {
 	fontFamily: '"Lucida Console", Monaco, monospace',
 	fontSize: "1.2em",
-	color:"white",
-	backgroundColor:"#333",
+	color:"#333",
+//	backgroundColor:"#333",
 	paddingLeft: "3%",
-	borderTop: "3px solid white"
+	paddingTop:"3px"
+//	borderTop: "3px solid white"
 };
 let carouselStyles = {
 	paddingTop: "3%",
