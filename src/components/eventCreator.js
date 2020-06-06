@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CarouselMain from "./carousel/carouselMain";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import logo from "./images/logo.png";
 
 class EventCreator extends Component {
 	constructor(props) {
@@ -29,7 +30,8 @@ class EventCreator extends Component {
 		return (
 			<div className={"EventCreator"}>
 				<div style={headerStyles}>
-					<div> Pick Your Stadium </div>
+					<img src={logo} style={logoStyles}/>		
+					<div style={headerTextStyles}> Pick Your Stadium </div>
 				</div>
 				<div style={carouselStyles}>
 					<CarouselMain carouselChange={this.carouselChange}/>
@@ -62,19 +64,29 @@ class EventCreator extends Component {
 
 export default EventCreator;
 let headerStyles = {
+	backgroundColor:"#20232a",
+	paddingBottom: "2%",
+	paddingTop: "2.5%",
+	overflow:"hidden"
+};
+let headerTextStyles = {
 	fontFamily: "Montserrat, sans-serif",
 	fontSmoothing: "antialiased",
 	textAlign: "center",
-	fontSize: "2em",
+	fontSize: "1.8em",
 	textTransform: "uppercase",
 	fontWeight: "bold",
 	color: "white",
 	textShadow: "0 1px 2px rgba(255,255,255,.3)",
-	backgroundColor:"#20232a",
-	paddingBottom: "2%",
-	paddingTop: "2.5%"
+	float:"left",
+	width:"85%"
 };
 let carouselStyles = {
 	paddingTop: "3%",
 
 };
+let logoStyles = {
+	width:"10%", 
+	padding:"1%",
+	float:"left", 
+}
