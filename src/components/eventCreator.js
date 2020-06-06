@@ -44,18 +44,15 @@ class EventCreator extends Component {
 					<img src={logo} style={logoStyles}/>		
 					<div style={headerTextStyles}>Event Creator</div>
 				</div>
-				<div style={secondaryHeaderStyles}>
-					-Pick your stadium
+				<div style={Object.assign({paddingTop: "2%"}, secondaryHeaderStyles)}>
+					Pick your stadium
 				</div> 
 				<div style={carouselStyles}>
 					<CarouselMain carouselChange={this.carouselChange}/>
 				</div>
-				<div style={secondaryHeaderStyles}>
-					 -Pick a name for the event
-				</div>
 				<ResponsiveTextInput placeHolder={"Event Name"} nameChange={this.setEventName} statusChange={this.setEventNameStatus} />
 				<div style={secondaryHeaderStyles}>
-					 -Select start date and time
+					 Start Date and Time
 				</div>
 				<div style={{}}>
 					<DatePicker
@@ -67,7 +64,7 @@ class EventCreator extends Component {
 					/>
 				</div>
 				<div style={secondaryHeaderStyles}> 
-					-Select end date and time 
+					End Date and Time 
 				</div>
 				<div style={{}}>
 					<DatePicker
@@ -92,28 +89,26 @@ let headerStyles = {
 	overflow:"hidden"
 };
 let headerTextStyles = {
-	fontFamily: "Montserrat, sans-serif",
+	fontFamily: "Poppins, sans-serif",
 	fontSmoothing: "antialiased",
 	textAlign: "center",
 	fontSize: "1.8em",
 	textTransform: "uppercase",
-	fontWeight: "bold",
+	fontWeight: "600",
 	color: "white",
 	textShadow: "0 1px 2px rgba(255,255,255,.3)",
 	float:"left",
 	width:"85%"
 };
 let secondaryHeaderStyles = {
-	fontFamily: '"Lucida Console", Monaco, monospace',
-	fontSize: "1.2em",
-	color:"#333",
-//	backgroundColor:"#333",
-	paddingLeft: "3%",
-	paddingTop:"3px"
-//	borderTop: "3px solid white"
+	fontFamily: "Poppins, sans-serif",
+	fontSize: "13px",
+	color:"#666666",
+	lineHeight: "1.5",
+	paddingLeft: "calc(3% + 5px)",
+	fontWeight:"400",
 };
 let carouselStyles = {
-	paddingTop: "3%",
 
 };
 let logoStyles = {
