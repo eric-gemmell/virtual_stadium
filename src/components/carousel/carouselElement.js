@@ -14,16 +14,13 @@ class CarouselElement extends Component {
 		this.props.clicked(this.props.index);
 	}
 	mouseEnter() {
-		console.log("Entered");
 		this.setState({hovered: true});
 	}
 
 	mouseLeave() {
-		console.log("Left");
 		this.setState({hovered: false});
 	}
 	render() {
-		console.log("ReturnedStyle: ",selected ? selectedStyle : (this.state.hovered ? hoveredStyle : standardStyle));
 		let selected = this.props.selectedStadium == this.props.index;
 		return (
 			<div className={"carouselElement"} onClick={this.selected}>
