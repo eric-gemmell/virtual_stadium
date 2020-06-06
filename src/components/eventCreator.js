@@ -20,45 +20,38 @@ class EventCreator extends Component {
 		this.setState({carouselIndex});
 	}
 	setStartDate(date){
-		if(date > this.state.today){
-			this.setState({startDate: date});
-		}
+		this.setState({startDate: date});
 	}
 	setEndDate(date){
-		if(date > this.state.today){
-			this.setState({endDate: date});
-		}
+		this.setState({endDate: date});
 	}
 	render() {
 		return (
 			<div className={"EventCreator"}>
-				<h1> Pick Your Stadium </h1>
+				<div style={headerStyles}>
+					<div> Pick Your Stadium </div>
+				</div>
 				<CarouselMain carouselChange={this.carouselChange}/>
-				<br/>
-				<h2> Select the start date of your event </h2>
-				<DatePicker
-					selected={this.state.startDate}
-					onChange={date => this.setStartDate(date)}
-					todayButton="Today"
-					showTimeSelect
-					minDate={this.state.today}
-					timeFormat="HH:mm"
-					timeIntervals={15}
-					timeCaption="time"
-					dateFormat="MMMM d, yyyy h:mm aa"
-				/>
-				<br/>
-				<DatePicker
-					selected={this.state.endDate}
-					onChange={date => this.setEndDate(date)}
-					minDate={this.state.startDate}
-					todayButton="Today"
-					showTimeSelect
-					timeFormat="HH:mm"
-					timeIntervals={15}
-					timeCaption="time"
-					dateFormat="MMMM d, yyyy h:mm aa"
-				/>
+				<div style={{}}>
+					<div> Select the start date and time of your event </div>
+					<DatePicker
+						selected={this.state.startDate}
+						onChange={date => this.setStartDate(date)}
+						todayButton="Today"
+						minDate={this.state.today}
+						dateFormat="MMMM d, yyyy"
+					/>
+				</div>
+				<div style={{}}>
+					<div> Select the end date and time of your event </div>
+					<DatePicker
+						selected={this.state.endDate}
+						onChange={date => this.setEndDate(date)}
+						minDate={this.state.today}
+						todayButton="Today"
+						dateFormat="MMMM d, yyyy"
+					/>
+				</div>
 				
 			</div>
 		);
@@ -66,3 +59,16 @@ class EventCreator extends Component {
 }
 
 export default EventCreator;
+let headerStyles = {
+	fontFamily: "Montserrat, sans-serif",
+	fontSmoothing: "antialiased",
+	textAlign: "center",
+	fontSize: "2em",
+	textTransform: "uppercase",
+	fontWeight: "bold",
+	color: "white",
+	textShadow: "0 1px 2px rgba(255,255,255,.3)",
+	backgroundColor:"#20232a",
+	paddingBottom: "2%",
+	paddingTop: "2.5%"
+};
