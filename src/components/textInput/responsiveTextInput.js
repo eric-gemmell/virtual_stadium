@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
+import "./responsiveTextInput.css";
 
 class ResponsiveTextInput extends Component {
 	constructor(props){
@@ -18,7 +19,7 @@ class ResponsiveTextInput extends Component {
 				<div style={labelInputStyles}>
 					Event Name
 				</div>	
-				<input type="input" style={inputStyles} placeholder={this.props.placeholder} value={this.state.value} 
+				<input className={"textInput"} type="input" style={inputStyles} placeholder={this.props.placeHolder} value={this.state.value} 
 					onChange={this.inputChange} onBlur={this.inputExit} onFocus={this.inputEnter}
 				/>
 				<div style={labelOnSelectStyles} ref={(border) => this.border = border}/>
@@ -43,12 +44,17 @@ class ResponsiveTextInput extends Component {
 				.duration(500)
 				.style("width","0%");
 		}
+		else{
+			console.log("checking Name",this.state.value);
+		}
 	}
 }
 export default ResponsiveTextInput;
 
 let textInputStyles = {
-	
+	boxSizing: "border-box",
+	padding:"3%",	
+	width:"100%"
 };
 let labelInputStyles = {
 	fontFamily: "Poppins,  sans-serif",
@@ -59,12 +65,13 @@ let labelInputStyles = {
 	fontWeight: "400",
 };
 let inputStyles = {
+	boxSizing: "border-box",
 	display: "block",
 	width: "100%",
 	background: "transparent",
 	fontFamily: "Poppins, sans-serif",
 	fontSize: "18px",
-	color: "#333333",
+	color: "#666666",
 	lineHeight: "1.2",
 	padding: "10px 5px",
 	fontWeight: "600",
@@ -72,8 +79,9 @@ let inputStyles = {
 	borderBottom: "2px solid rgb(217,217,217)"
 };
 let labelOnSelectStyles = {
+	boxSizing: "border-box",
 	height: "2px",
-	backgroundColor: "#212529",
+	backgroundColor: "#666666",
 	width:"0%",
 	top:"-2px",
 	position:"relative"
