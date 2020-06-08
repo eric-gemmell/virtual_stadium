@@ -20,7 +20,7 @@ class EventCreator extends Component {
 		this.setStartDate = this.setStartDate.bind(this);
 		this.setEndDate = this.setEndDate.bind(this);
 		this.setEventName = this.setEventName.bind(this);
-		this.setEVentNameStatus = this.setEventNameStatus.bind(this);
+		this.setEventNameStatus = this.setEventNameStatus.bind(this);
 	}
 	carouselChange(carouselIndex){
 		this.setState({carouselIndex});
