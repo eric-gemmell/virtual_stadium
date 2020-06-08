@@ -108,9 +108,9 @@ class EventCreator extends Component {
 				</div>
 				{this.state.link && 
 				<div style={{"margin":"5% 3% 0% 3%",height:"20px",position:"relative",borderBottom:"1px solid #666666"}}>
-					<div style={linkStyles}>
+					<a style={linkStyles} href={this.state.link}>
 						{this.state.link}
-					</div>
+					</a>
 					<div style={{position:"absolute",right:"0px",bottom:"0px",width:"15%",height:"100%"}}>
 						<button onClick={() => copy(this.state.link)} style={copyButtonStyles}>
 							Copy
@@ -205,6 +205,7 @@ let linkStyles = {
 	fontSize: "13px",
 	color:"#666666",
 	fontWeight:"400",
+	textDecoration:"none",
 };
 let copyButtonStyles = {
 	height:"100%",
