@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 import ResponsiveTextInput from "./textInput/responsiveTextInput";
 import "react-datepicker/dist/react-datepicker.css";
 import logo from "./images/logo.png";
+import SyncLoader from "react-spinners/SyncLoader";
+import copy from "copy-to-clipboard";  
 
 class EventCreator extends Component {
 	constructor(props) {
@@ -14,13 +16,15 @@ class EventCreator extends Component {
 			startDate: new Date(),
 			endDate: new Date(),
 			eventName: null,
-			eventNameStatus: "not ready"
+			eventNameStatus: "not ready",
+			eventCreationStatus:"not created"
 		}
 		this.carouselChange = this.carouselChange.bind(this);
 		this.setStartDate = this.setStartDate.bind(this);
 		this.setEndDate = this.setEndDate.bind(this);
 		this.setEventName = this.setEventName.bind(this);
 		this.setEventNameStatus = this.setEventNameStatus.bind(this);
+		this.createEvent = this.createEvent.bind(this);
 	}
 	carouselChange(carouselIndex){
 		this.setState({carouselIndex});
@@ -36,6 +40,25 @@ class EventCreator extends Component {
 	}
 	setEventNameStatus(newStatus){
 		this.setState({eventNameStatus:newStatus});
+	}
+	isReadyToCreateEvent(){
+		if(this.state.startDate < this.state.today || this.state.endDate < this.state.startDate){ 
+			return false;
+		}
+		if(this.state.eventNameStatus != "ready"){
+			return false;
+		}
+		if(this.state.eventCreationStatus != "not created"){
+			return false;
+		}
+		return true;
+	}
+	createEvent(){
+		this.setState({eventCreationStatus:"creating event"});
+		new Promise((resolve,reject) => setTimeout(resolve, 2000))
+			.then(() => {
+				this.setState({eventCreationStatus: "event created",link: "http://tinyurl.com/2g9mqh"});
+			});
 	}
 	render() {
 		return (
@@ -83,7 +106,31 @@ class EventCreator extends Component {
 						dateFormat="MMMM d, yyyy h:mm aa"
 					/>
 				</div>
-				
+				{this.state.link && 
+				<div style={{"margin":"5% 3% 0% 3%",height:"20px",position:"relative",borderBottom:"1px solid #666666"}}>
+					<div style={linkStyles}>
+						{this.state.link}
+					</div>
+					<div style={{position:"absolute",right:"0px",bottom:"0px",width:"15%",height:"100%"}}>
+						<button onClick={() => copy(this.state.link)} style={copyButtonStyles}>
+							Copy
+						</button>
+					</div>
+				</div>
+		
+				}
+				<div style={{paddingLeft:"calc(3% + 5px)", paddingTop: "5%"}}>
+					<button style={buttonStyles(this.isReadyToCreateEvent())} type="button" onClick={() => this.isReadyToCreateEvent() ? this.createEvent() : null }>
+						{this.state.eventCreationStatus == "creating event" ?
+							<SyncLoader size={10} margin={2} color={"white"}/>
+							:
+							this.state.eventCreationStatus == "event created" ?
+							"Event Created Already"
+							:
+							"Create Event"
+						}
+					</button>
+				</div>
 			</div>
 		);
 	}
@@ -133,6 +180,46 @@ let dateStyles = {
 	paddingTop:"5px",
 	paddingLeft:"3%",
 	paddingRight:"3%"
+};
+function  buttonStyles(active){
+	return {
+		padding:"0.7rem 1.4rem",
+		borderRadius:"0.15rem",
+		boxSizing: "border-box",
+		fontFamily:"Poppins,sans-serif",
+		fontSize:"16px",
+		textTransform:"uppercase",
+		fontWeight:"400",
+		color:"white",
+		backgroundColor: active ? "#3369ff": "grey",
+		boxShadow:"inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17)",
+		textAlign:"center",
+		border:"none",
+	}
+};
+let linkStyles = {
+	width:"85%",
+	position:"absolute",
+	bottom:"0px",
+	fontFamily: "Poppins, sans-serif",
+	fontSize: "13px",
+	color:"#666666",
+	fontWeight:"400",
+};
+let copyButtonStyles = {
+	height:"100%",
+	width:"100%",
+	borderRadius:"0.15rem",
+	boxSizing: "border-box",
+	fontFamily:"Poppins,sans-serif",
+	fontSize:"13px",
+	textTransform:"uppercase",
+	fontWeight:"400",
+	color:"white",
+	backgroundColor: "grey",
+	boxShadow:"inset 0 -0.6em 0 -0.35em rgba(0,0,0,0.17)",
+	textAlign:"center",
+	border:"none",
 };
 function addDays(date, days) {
 	var result = new Date(date);
