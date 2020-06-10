@@ -10,7 +10,7 @@ class ResponsiveTextInput extends Component {
 		this.inputEnter = this.inputEnter.bind(this);	
 		this.inputExit = this.inputExit.bind(this);	
 		this.inputChange = this.inputChange.bind(this);	
-
+		this.inputKeyPressed = this.inputKeyPressed.bind(this);
 		this.state = {
 			textState:"not ready",
 			value: ""
@@ -23,10 +23,10 @@ class ResponsiveTextInput extends Component {
 					Event Name
 				</div>	
 				<div style={{width:"100%",padding:"10px 5px",height:"45px", boxSizing:"border-box"}}>
-					<input className={"textInput"} type="input" 
+					<input className={"textInput"} type="input" ref={(input) => this.input = input} 
 						css={inputStyles((this.state.textState == "rejected") ? "#cf7677":"rgb(217,217,217)")}
 						placeholder={this.state.textState == "rejected" ? "Name taken or rejected":this.props.placeHolder} value={this.state.value} 
-						onChange={this.inputChange} onBlur={this.inputExit} onFocus={this.inputEnter}
+						onChange={this.inputChange} onKeyDown={this.inputKeyPressed} onBlur={this.inputExit} onFocus={this.inputEnter}
 					/>
 					{this.state.textState == "checking name" &&
 					<div style={{width:"10%",height:"25px", float:"right"}}>
@@ -58,13 +58,17 @@ class ResponsiveTextInput extends Component {
 			</div>
 		);
 	}
-	
 	setTextState(newState){
 		this.props.statusChange(newState);
 		this.setState({textState:newState});
 	}
 	inputChange(event){
 		this.setState({value:event.target.value});
+	}
+	inputKeyPressed(event){
+		if (event.keyCode === 13) {
+			this.input.blur();
+		}
 	}
 	inputEnter(){
 		this.setTextState("not ready");
