@@ -63,9 +63,9 @@ class EventCreator extends Component {
 	render() {
 		return (
 			<div className={"EventCreator"}>
-				<div style={headerStyles}>
-					<img src={logo} style={logoStyles}/>		
-					<div style={headerTextStyles}>Event Creator</div>
+				<div style={headerStyles(this.props.mobile)}>
+					<img src={logo} style={logoStyles(this.props.mobile)}/>		
+					<div style={headerTextStyles(this.props.mobile)}>Event Creator</div>
 				</div>
 				<div style={secondaryHeaderStyles}>
 					Pick your stadium
@@ -137,31 +137,33 @@ class EventCreator extends Component {
 }
 
 export default EventCreator;
-let headerStyles = {
-	backgroundColor:"#333",
-	paddingBottom: "2%",
-	paddingTop: "2.5%",
-	overflow:"hidden"
+let headerStyles = (mobile) => {
+	return {
+		backgroundColor:"#333",
+		paddingBottom: (mobile ? "2%": "0.5%"),
+		paddingTop: (mobile ?"2.5%":"1%"),
+		overflow:"hidden"
+	};
 };
-let logoStyles = {
-	display: "block",
-	maxWidth:"20%",
-	maxHeight:"50px",
-	verticalAlign: "middle",
-	paddingLeft:"5%",
-	float: "left",
-	
-}
-let headerTextStyles = {
-	fontFamily: "Poppins, sans-serif",
-	textAlign: "center",
-	fontSize: "2em",
-	fontWeight: "600",
-	color: "white",
-	textShadow: "0 1px 2px rgba(255,255,255,.3)",
-	float:"left",
-	height: "50%",
-	width:"75%",
+let logoStyles = (mobile) => {
+	return {
+		maxWidth:"20%",
+		maxHeight:(mobile)?"50px":"70px",
+		paddingLeft:"5%",
+		float: "left",	
+	};
+};
+let headerTextStyles = (mobile) => {
+	return {
+		fontFamily: "Poppins, sans-serif",
+		textAlign: "center",
+		fontSize: (mobile)?"2em":"3em",
+		fontWeight: "600",
+		color: "white",
+		textShadow: "0 1px 2px rgba(255,255,255,.3)",
+		float:"left",
+		width:"75%",
+	};
 };
 let secondaryHeaderStyles = {
 	fontFamily: "Poppins, sans-serif",
