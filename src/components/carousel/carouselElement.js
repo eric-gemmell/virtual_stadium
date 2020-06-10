@@ -33,13 +33,19 @@ class CarouselElement extends Component {
 export default CarouselElement;
 let selectedStyle = {
 	width: "100%",
+	maxWidth:"250px",
+	maxHeight:"250px",
 	borderBottom: "5px solid steelblue"
 };
 let hoveredStyle = {
 	width: "100%",
+	maxWidth:"250px",
+	maxHeight:"250px",
 	borderBottom: "5px solid #6d6d6d"
 };
 let standardStyle = {
 	width: "100%",
+	maxWidth:"250px",
+	maxHeight:"250px",
 	borderBottom: "5px solid rgba(0,0,0,0)"
 };

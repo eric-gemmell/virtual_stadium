@@ -44,9 +44,10 @@ class CarouselMain extends Component {
 		this.setState({carouselIndex:newIndex,selectedStadium:carouselIndex});
 	}
 	render() {
+		
 		return (
 			<div className={"CarouselMain"}>
-				<Carousel centered infinite slidesPerPage={2} dots
+				<Carousel centered infinite slidesPerPage={(this.props.windowSize>500)?Math.min(this.props.windowSize/250,3):2 } dots
 					value={this.state.carouselIndex}
 					onChange={this.carouselChange}
 				>

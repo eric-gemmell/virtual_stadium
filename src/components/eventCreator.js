@@ -71,7 +71,7 @@ class EventCreator extends Component {
 					Pick your stadium
 				</div> 
 				<div style={carouselStyles}>
-					<CarouselMain carouselChange={this.carouselChange}/>
+					<CarouselMain windowSize={this.props.windowSize} mobile={this.props.mobile} windowcarouselChange={this.carouselChange}/>
 				</div>
 				<ResponsiveTextInput placeHolder={"Event Name"} nameChange={this.setEventName} statusChange={this.setEventNameStatus} />
 				<div style={secondaryHeaderStyles}>
@@ -142,7 +142,9 @@ let headerStyles = (mobile) => {
 		backgroundColor:"#333",
 		paddingBottom: (mobile ? "2%": "0.5%"),
 		paddingTop: (mobile ?"2.5%":"1%"),
-		overflow:"hidden"
+		overflow:"hidden",
+		display: "flex",
+		alignItems: "center",
 	};
 };
 let logoStyles = (mobile) => {
@@ -150,7 +152,6 @@ let logoStyles = (mobile) => {
 		maxWidth:"20%",
 		maxHeight:(mobile)?"50px":"70px",
 		paddingLeft:"5%",
-		float: "left",	
 	};
 };
 let headerTextStyles = (mobile) => {
@@ -161,8 +162,7 @@ let headerTextStyles = (mobile) => {
 		fontWeight: "600",
 		color: "white",
 		textShadow: "0 1px 2px rgba(255,255,255,.3)",
-		float:"left",
-		width:"75%",
+		width:"80%",
 	};
 };
 let secondaryHeaderStyles = {
@@ -171,8 +171,8 @@ let secondaryHeaderStyles = {
 	color:"#666666",
 	lineHeight: "1.5",
 	paddingLeft: "calc(3% + 5px)",
-	paddingTop:"2%",
-	paddingBottom:"2%",
+	paddingTop:"10px",
+	paddingBottom:"10px",
 	fontWeight:"400",
 };
 let carouselStyles = {

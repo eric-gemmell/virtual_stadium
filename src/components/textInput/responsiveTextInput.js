@@ -95,7 +95,7 @@ export default ResponsiveTextInput;
 
 let textInputStyles = {
 	boxSizing: "border-box",
-	padding:"3%",	
+	padding:"10px 3%",	
 	width:"100%"
 };
 let labelInputStyles = {
