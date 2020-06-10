@@ -107,7 +107,7 @@ class EventCreator extends Component {
 					/>
 				</div>
 				{this.state.link && 
-				<div style={{"margin":"5% 3% 0% 3%",height:"20px",position:"relative",borderBottom:"1px solid #666666"}}>
+				<div style={{"margin":"20px 3% 0% 3%",height:"20px",position:"relative",borderBottom:"1px solid #666666"}}>
 					<a style={linkStyles} href={this.state.link}>
 						{this.state.link}
 					</a>
@@ -119,7 +119,7 @@ class EventCreator extends Component {
 				</div>
 		
 				}
-				<div style={{paddingLeft:"calc(3% + 5px)", paddingTop: "5%"}}>
+				<div style={{paddingLeft:"calc(3% + 5px)", paddingTop: "20px"}}>
 					<button style={buttonStyles(this.isReadyToCreateEvent())} type="button" onClick={() => this.isReadyToCreateEvent() ? this.createEvent() : null }>
 						{this.state.eventCreationStatus == "creating event" ?
 							<SyncLoader size={10} margin={2} color={"white"}/>
