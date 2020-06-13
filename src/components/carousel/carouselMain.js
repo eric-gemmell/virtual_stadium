@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Carousel, { Dots } from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import CarouselElement from "./carouselElement";
-import largeStadium from "./madridStadium.png";
+import largeStadiumImage from "./images/madridStadium.png";
+let largeStadium = "public/"+largeStadiumImage;
 
 class CarouselMain extends Component {
 	constructor(props) {

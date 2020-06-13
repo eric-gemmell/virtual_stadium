@@ -3,9 +3,10 @@ import CarouselMain from "./carousel/carouselMain";
 import DatePicker from "react-datepicker";
 import ResponsiveTextInput from "./textInput/responsiveTextInput";
 import "react-datepicker/dist/react-datepicker.css";
-import logo from "./images/logo.png";
+import logoImage from "./images/logo.png";
 import SyncLoader from "react-spinners/SyncLoader";
 import copy from "copy-to-clipboard";  
+let logo = "public/"+logoImage;
 
 class EventCreator extends Component {
 	constructor(props) {
