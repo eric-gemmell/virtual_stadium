@@ -1,15 +1,17 @@
 # Virtual Stadium
 ---
 Demo available at: [Event Creator](https://palamalama.github.io/virtual_stadium/ "Github.io Event Creator")
+
 ---
-###### To run
-```npm install```
+#### To run
+######```npm install```
 
-```npm run build```
+######```npm run build```
 
-```xdg-open index.html```
+######```xdg-open index.html```
+
 ---
-###### To code
-```npm install```
+#### To code
+######```npm install```
 
-```npm run watch```
+######```npm run watch```
