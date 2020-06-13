@@ -1,5 +1,5 @@
 # Virtual Stadium
-[Event Creator](https://palamalama.github.io/virtual_stadium/ "Github.io Event Creator")
+Demo available at: [Event Creator](https://palamalama.github.io/virtual_stadium/ "Github.io Event Creator")
 ###### To run
 ```npm install```
 
