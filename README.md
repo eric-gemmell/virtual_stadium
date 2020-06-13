@@ -4,14 +4,14 @@ Demo available at: [Event Creator](https://palamalama.github.io/virtual_stadium/
 
 ---
 #### To run
-######```npm install```
+###```npm install```
 
-######```npm run build```
+###```npm run build```
 
-######```xdg-open index.html```
+###```xdg-open index.html```
 
 ---
 #### To code
-######```npm install```
+###```npm install```
 
-######```npm run watch```
+###```npm run watch```
