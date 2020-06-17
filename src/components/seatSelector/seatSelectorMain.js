@@ -35,13 +35,13 @@ class SeatSelector extends Component {
 				.on("zoom", zoomed);
 			function zoomed() {
 				const {transform} = d3.event;
-				d3.select("#zoom").transition().duration(500)
+				d3.select("#zoom")
 					.attr("transform", transform);
 			}
 			d3.xml(stadiumSvg).then(xml => {
-				d3.select("svg").call(zoom);
 				//let importedNode = document.importNode(xml.documentElement, true);
 				//d3.select(this.svgContainer).node().appendChild(importedNode);
+				d3.select("svg").call(zoom);
 				d3.select(this.svgContainer)
 					.selectAll(".selectable")
 					.on("mouseover",function() {
@@ -53,24 +53,25 @@ class SeatSelector extends Component {
 						d3.select(this)
 							.style("stroke",d3.select(this).attr("oldStyle"));
 					})
-					.on("click", function(){
-						let BBox = d3.select(".selectable").node().getBBox()
-						let x0 = BBox.x;
-						let y0 = BBox.y;
-						let x1 = x0 + BBox.width;
-						let y1 = y0 + BBox.height;
+					.on("click",function(){
+						let {x0,x1,y0,y1} = getBoundingBox(d3.select(this));
 						d3.event.stopPropagation();
-						zoom.transform(d3.select("svg"),d3.zoomIdentity.translate(-(x0+x1)/2,-(y0+y1)/2).scale(100/(x1-x0+10)));
+						zoom.transform(d3.select("svg").transition().duration(500),d3.zoomIdentity.scale(Math.min(100/(x1-x0+10),30/(y1-y0+10))).translate(-x0+5,-y0+5));
 						
 					});
 			});
 			this.setState({svgDisplayed:true});
 		}
 	}	
-	zoomInOnSection(section){
-		
-	}
 }
 
 export default SeatSelector;
 
+function getBoundingBox(selection){
+	let BBox = selection.node().getBBox()
+	let x0 = BBox.x;
+	let y0 = BBox.y;
+	let x1 = x0 + BBox.width;
+	let y1 = y0 + BBox.height;
+	return {x0,x1,y0,y1};
+}
