@@ -19,12 +19,6 @@ class SeatSelector extends Component {
 		return(
 			<div>
 				<div id={"svg container"} style={{width:"100%",height:"100%"}} ref={(svgContainer) => this.svgContainer = svgContainer}>
-					<svg style={{width:"100%"}} viewBox={"0 0 100 30"} >
-						<g id="zoom">
-							<rect className="selectable" x="10" y="10" width="10" height="10" style={{fill:"red",strokeWidth:"1",stroke:"black"}} />
-							<rect className="decoration" x="30" y="10" width="10" height="10" style={{fill:"blue",strokeWidth:"1",stroke:"black"}} />
-						</g>
-					</svg>
 				</div>	
 			</div>
 		      );
@@ -39,19 +33,22 @@ class SeatSelector extends Component {
 					.attr("transform", transform);
 			}
 			d3.xml(stadiumSvg).then(xml => {
-				//let importedNode = document.importNode(xml.documentElement, true);
-				//d3.select(this.svgContainer).node().appendChild(importedNode);
-				d3.select("svg").call(zoom);
+				let importedNode = document.importNode(xml.documentElement, true);
+				d3.select(this.svgContainer).node().appendChild(importedNode);
+				d3.select("svg")
+					.attr("width","100%")
+					.attr("height",null)
+					.call(zoom);
 				d3.select(this.svgContainer)
 					.selectAll(".selectable")
 					.on("mouseover",function() {
 						d3.select(this)
-							.attr("oldStyle",d3.select(this).style("stroke"))
-							.style("stroke","yellow");
+							.attr("oldStyle",d3.select(this).style("fill"))
+							.style("fill","yellow");
 					})
 					.on("mouseout",function(){
 						d3.select(this)
-							.style("stroke",d3.select(this).attr("oldStyle"));
+							.style("fill",d3.select(this).attr("oldStyle"));
 					})
 					.on("click",function(){
 						let {x0,x1,y0,y1} = getBoundingBox(d3.select(this));
@@ -73,5 +70,7 @@ function getBoundingBox(selection){
 	let y0 = BBox.y;
 	let x1 = x0 + BBox.width;
 	let y1 = y0 + BBox.height;
+	console.log("x0",x0,"y0",y0);
+	console.log(d3.geoPath().bounds(selection));
 	return {x0,x1,y0,y1};
 }
