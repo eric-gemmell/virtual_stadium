@@ -31,9 +31,15 @@ class SeatSelector extends Component {
 	}
 	componentDidUpdate(){
 		if(this.state.d3Loaded && this.state.svgLoaded && !this.state.svgDisplayed){
-			console.log(stadiumSvg);
+			let zoom = d3.zoom()
+				.on("zoom", zoomed);
+			function zoomed() {
+				const {transform} = d3.event;
+				d3.select("#zoom").transition().duration(500)
+					.attr("transform", transform);
+			}
 			d3.xml(stadiumSvg).then(xml => {
-				console.log("d3 loaded and the image too, this is the data", xml);
+				d3.select("svg").call(zoom);
 				//let importedNode = document.importNode(xml.documentElement, true);
 				//d3.select(this.svgContainer).node().appendChild(importedNode);
 				d3.select(this.svgContainer)
@@ -48,16 +54,15 @@ class SeatSelector extends Component {
 							.style("stroke",d3.select(this).attr("oldStyle"));
 					})
 					.on("click", function(){
-						d3.select("svg")
-							.transition()
-							.duration(750)
-							.attr("viewBox","0 0 50 15");
+						let BBox = d3.select(".selectable").node().getBBox()
+						let x0 = BBox.x;
+						let y0 = BBox.y;
+						let x1 = x0 + BBox.width;
+						let y1 = y0 + BBox.height;
+						d3.event.stopPropagation();
+						zoom.transform(d3.select("svg"),d3.zoomIdentity.translate(-(x0+x1)/2,-(y0+y1)/2).scale(100/(x1-x0+10)));
+						
 					});
-				console.log(d3.select(this.svgContainer).select(".selectable").node().getBBox());
-				d3.select("svg")
-					.call(d3.zoom().on("zoom", function () {
-						d3.select("#zoom").attr("transform", d3.event.transform)
-					}));
 			});
 			this.setState({svgDisplayed:true});
 		}
@@ -68,3 +73,4 @@ class SeatSelector extends Component {
 }
 
 export default SeatSelector;
+
